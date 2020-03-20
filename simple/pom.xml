@@ -6,7 +6,7 @@
 
   <groupId>t4</groupId>
   <artifactId>simple</artifactId>
-  <version>1.0-SNAPSHOT</version>
+  <version>1</version>
 
   <name>simple</name>
   <!-- FIXME change it to the project's website -->
@@ -20,16 +20,36 @@
 
   <dependencies>
     <dependency>
-      <groupId>junit</groupId>
+		    <groupId>org.testng</groupId>
+			<artifactId>testng</artifactId>
+			<version>4.7</version>
+			<scope>test</scope>
+			<classifier>jdk15</classifier>
+      <!-- <groupId>junit</groupId>
       <artifactId>junit</artifactId>
       <version>4.11</version>
-      <scope>test</scope>
+      <scope>test</scope>-->
     </dependency>
   </dependencies>
 
   <build>
     <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
       <plugins>
+		<plugin>
+		 <groupId>org.codehaus.mojo</groupId>
+		 <artifactId>findbugs-maven-plugin</artifactId>
+		 <version>3.0.1</version>
+		</plugin>
+		<plugin>
+		 <groupId>org.codehaus.mojo</groupId>
+		 <artifactId>cobertura-maven-plugin</artifactId>
+		 <configuration>
+		   <formats>
+		     <format>html</format>
+			 <format>xml</format>
+		   </formats>
+		 </configuration>
+		</plugin>
         <!-- clean lifecycle, see https://maven.apache.org/ref/current/maven-core/lifecycles.html#clean_Lifecycle -->
         <plugin>
           <artifactId>maven-clean-plugin</artifactId>
@@ -45,6 +65,7 @@
           <version>3.8.0</version>
         </plugin>
         <plugin>
+		  <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-surefire-plugin</artifactId>
           <version>2.22.1</version>
         </plugin>
