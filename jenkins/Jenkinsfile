@@ -4,8 +4,7 @@ pipeline {
         stage('Build') {
             steps {
                 // Clonar el repositorio
-                git url: 'https://github.com/Cartucha/GPI2'
-                load '/var/lib/tomcat8/.jenkins/workspace/Practica7/Bare-Arduino-Project-master/jenkins'
+                git url: 'https://github.com/Cartucha/GPI2/jenkins'
                 
                 // Cambiar directorio
                 dir ('/var/lib/tomcat8/.jenkins/workspace/Practica7/simple'){
