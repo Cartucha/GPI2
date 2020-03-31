@@ -4,7 +4,7 @@ pipeline {
         stage('Build') {
             steps {
                 // Clonar el repositorio
-                git url: 'https://github.com/Cartucha/GPI2/jenkins'
+                git url: 'https://github.com/Cartucha/GPI2'
                 
                 // Cambiar directorio
                 dir ('/var/lib/tomcat8/.jenkins/workspace/Practica7/simple'){
