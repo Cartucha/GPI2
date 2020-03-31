@@ -1,0 +1,45 @@
+pipeline {
+    agent any
+    stages {
+        stage('Build') {
+            steps {
+                // Clonar el repositorio
+                git url: 'https://github.com/Cartucha/GPI2'
+                
+                // Cambiar directorio
+                dir ('/var/lib/tomcat8/.jenkins/workspace/Practica7/simple'){
+                
+                    // Compilar Maven y herramienta
+                    sh "mvn clean compile site"
+                }
+                // Cambiar directorio
+                dir ('/var/lib/tomcat8/.jenkins/workspace/Practica7/Bare-Arduino-Project-master/Arduino-Makefile/examples/sketch_rodriguez100361'){
+                    // Compilar Arduino
+                    sh 'make'
+                }
+                /* Android
+                // Cambiar directorio
+                dir ('/var/lib/tomcat8/.jenkins/workspace/Practica7/gpi2a100361'){
+                    // Compilar Android
+                    sh './gradlew tasks compileDebugAndroidTestSources'
+                    sh './gradlew task compileDebugAndroidTestSources'
+                    sh './gradlew task compileDebugSources'
+                    sh './gradlew task compileDebugUnitTestSources'
+                    sh './gradlew task compileReleaseSources'
+                    sh './gradlew task compileReleaseUnitTestSources'
+                }
+                */
+                
+            }
+        }
+        stage ('Test'){
+            steps {
+                // Cambio directorio
+                dir ('/var/lib/tomcat8/.jenkins/workspace/Practica7/simple'){
+                    // Test Maven
+                    sh "mvn surefire:test"
+                }
+            }
+        }
+    }
+}
